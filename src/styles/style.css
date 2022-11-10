@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+aside {
+    flex-direction: column;
+}
+
+
+.add-project-popup {
+    display: none;
+}
+/* input.AddProject {
+    display: none;
+} */
