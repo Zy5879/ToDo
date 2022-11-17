@@ -75,10 +75,12 @@
     // }
 // }
 
-export const Todo = (task,duedate = 'DueDate?') => {
+// import { isDate } from "date-fns/esm"
+
+export const TodoTask = (task,duedate = 'DueDate?') => {
     return {
         task:task,
-        duedate:duedate,
+        duedate: duedate,
         setTask(task) {
             task = task
         },
@@ -90,10 +92,22 @@ export const Todo = (task,duedate = 'DueDate?') => {
         },
         setDate(duedate) {
             duedate = duedate
-        }
+        },
+        // getDateFormatted() {
+        //     const day = duedate.split('/')[0]
+        //     const month = duedate.split('/')[1]
+        //     const year = duedate.split('/')[2]
+        //     return `${day}/${month}/${year}`
+        // }
         
     }
 }
+
+// let user1 = Todo('Create','11/12/2022')
+
+
+// console.log(user1)
+
 
 
 

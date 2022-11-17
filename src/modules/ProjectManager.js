@@ -1,5 +1,5 @@
-import { toDate, isToday, isThisWeek, subDays } from "date-fns";
-
+// import { toDate, isToday, isThisWeek, subDays } from "date-fns";
+// import { Todo } from "./TodoManager";
 // export class ProjectName {
 //     constructor(name) {
 //         this.name = name;
@@ -43,8 +43,8 @@ import { toDate, isToday, isThisWeek, subDays } from "date-fns";
 //     }
 // }
 
-export const ProjectName = (name, task = []) => {
-    // let task = []
+export const ProjectName = (name) => {
+    let task = []
     return {
         name:name,
         task,
@@ -54,42 +54,58 @@ export const ProjectName = (name, task = []) => {
         setName(name) {
             name = name
         },
-        getTask() {
-            return task
-        },
-        contains(taskName) {
-            return task.some((tasks) => tasks === taskName)
-        },
-        getSingleTask(taskName) {
-            return task.find((tasks) => tasks === taskName)
-        },
         addTask(newTask) {
             if(task.find((tasks) => tasks === newTask))
             return
             task.push(newTask)
         },
+        getTask() {
+            return task
+        },
+        // contains(taskName) {
+        //     return task.some((tasks) => tasks === taskName)
+        // },
+        getSingleTask(taskName) {
+            return task.find((tasks) => tasks.task === taskName)
+        },
+        // addTask(newTask) {
+        //     if(task.find((tasks) => tasks === newTask))
+        //     return
+        //     task.push(newTask)
+        // },
         deleteTask(targetTask) {
             const grabTask = task.find((tasks) => tasks === targetTask)
             return task.splice(task.indexOf(grabTask), 1)
         },
-        getTodayTask() {
-            task.filter((task) => {
-                const updateToday = new Date(task)
-                return isToday(toDate(updateToday))
-            })
-        },
-        getUpcomingTask() {
-            task.filter((tasks) => {
-                const updateUpcoming = new Date(tasks)
-                return isThisWeek(subDays(toDate(updateUpcoming)), 1)
-            })
-        }
+        // addDate(date) {
+        //     return task.push(date)
+        // }
+        // getTodayTask() {
+        //     task.filter((tasks) => {
+        //         const updateToday = new Date(tasks)
+        //         return isToday(toDate(updateToday))
+        //     })
+        // },
+        // getUpcomingTask() {
+        //     task.filter((tasks) => {
+        //         const updateUpcoming = new Date(tasks)
+        //         return isThisWeek(subDays(toDate(updateUpcoming)), 1)
+        //     })
+        // }
 
     }
 }
 
-let user1 = ProjectName('Resume')
-user1.addTask('Crete')
-user1.addTask('CCC')
+// let user1 = ProjectName('Console')
+// user1.addTask('Create')
+// user1.addDate('11/22/2022')
+// console.log(user1)
 
-console.log(user1)
+// let user2 = ProjectName('Log')
+// user2.addTask('DUMN')
+// user2.addDate('11/12/2022')
+
+// console.log(user2)
+
+
+
