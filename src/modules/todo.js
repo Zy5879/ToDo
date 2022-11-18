@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid"
-export const TodoFactory = (task,duedate,id) => {
+const TodoFactory = (task,duedate,id) => {
     // let id = uuidv4()
     return {
         task:task,
@@ -26,7 +26,24 @@ export const TodoFactory = (task,duedate,id) => {
     
 }
 
-let task = TodoFactory('Create','11/22/2022')
-// let task1 = TodoFactory('Resume','12/2/2023')
-// console.log(task.getID())
+const ProjectFactory = (name, id) => {
+    let todos = [];
+    return {
+        name:name,
+        todos,
+        id:uuidv4(),
 
+        getProject() {
+            return name
+        },
+        getID() {
+            return id
+        },
+        
+    }
+}
+
+export {TodoFactory, ProjectFactory}
+
+// let task = ProjectFactory('MAMA')
+// console.log(task)

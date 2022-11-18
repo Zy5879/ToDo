@@ -1,2 +1,2 @@
 import pubsub from "./modules/pubsub";
-import { TodoFactory } from "./modules/Todo";
+import { TodoFactory, ProjectFactory } from "./modules/Todo";
