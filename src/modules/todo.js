@@ -5,6 +5,7 @@ export const TodoFactory = (task,duedate,id) => {
         task:task,
         duedate:duedate,
         id:uuidv4(),
+
         getTask() {
             return task
         },
@@ -26,4 +27,6 @@ export const TodoFactory = (task,duedate,id) => {
 }
 
 let task = TodoFactory('Create','11/22/2022')
-console.log(task)
+// let task1 = TodoFactory('Resume','12/2/2023')
+// console.log(task.getID())
+
