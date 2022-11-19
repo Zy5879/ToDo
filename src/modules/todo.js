@@ -26,10 +26,11 @@ const TodoFactory = (task,duedate,id) => {
     
 }
 
-const ProjectFactory = (name, id) => {
+const ProjectFactory = (name,id) => {
     let todos = [];
     return {
         name:name,
+        id:uuidv4(),
         todos,
         id:uuidv4(),
 
@@ -39,11 +40,18 @@ const ProjectFactory = (name, id) => {
         getID() {
             return id
         },
-        
+        addTask(task) {
+            return todos.push(task)
+        },
+        deleteTask(targetTask) {
+            const grabTask = todos.find((oldtask) => oldtask.task === targetTask)
+            return todos.splice(todos.indexOf(grabTask), 1)
+        },
     }
 }
 
 export {TodoFactory, ProjectFactory}
 
-// let task = ProjectFactory('MAMA')
-// console.log(task)
+let task = ProjectFactory('Create')
+task.addTask('NNN')
+console.log(task)
