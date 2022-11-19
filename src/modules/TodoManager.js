@@ -103,7 +103,7 @@ export const TodoTask = (task,duedate = 'DueDate?') => {
     }
 }
 
-// let user1 = Todo('Create','11/12/2022')
+let user1 = TodoTask('Create','11/12/2022')
 
 
 // console.log(user1)
