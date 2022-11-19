@@ -52,6 +52,5 @@ const ProjectFactory = (name,id) => {
 
 export {TodoFactory, ProjectFactory}
 
-let task = ProjectFactory('Create')
+let task = ProjectFactory('CsKK')
 task.addTask('NNN')
-console.log(task)
