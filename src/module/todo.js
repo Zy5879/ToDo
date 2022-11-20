@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid"
-const TodoFactory = (task,duedate,id) => {
+const TodoFactory = (task,duedate,id = uuidv4()) => {
     // let id = uuidv4()
     return {
         task:task,
@@ -26,13 +26,14 @@ const TodoFactory = (task,duedate,id) => {
     
 }
 
-const ProjectFactory = (name,id) => {
+
+
+const ProjectFactory = (name,id = uuidv4()) => {
     let todos = [];
     return {
         name:name,
-        id:uuidv4(),
         todos,
-        id:uuidv4(),
+        // id:uuidv4(),
 
         getProject() {
             return name
@@ -51,3 +52,4 @@ const ProjectFactory = (name,id) => {
 }
 
 export {TodoFactory, ProjectFactory}
+

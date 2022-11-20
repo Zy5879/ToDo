@@ -6,10 +6,6 @@ aside {
     flex-direction: column;
 }
 
-
-.add-project-popup {
+.add-popup {
     display: none;
 }
-/* input.AddProject {
-    display: none;
-} */

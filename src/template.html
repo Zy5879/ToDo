@@ -7,5 +7,28 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body class="loaded">
+    <header class="header">
+        <div class="main-header">
+            <h2 class="todo">Todo App</h2>
+        </div>
+    </header>
+    <aside class="aside-left">
+        <div class="side-top">
+            <button id="home">Home</button>
+            <button id="today">Today</button>
+            <button id="upcoming">Upcoming</button>
+        </div>
+        <div class="side-bottom">
+            <h2 class="project-header">Projects</h2>
+            <div class="hold-projects"></div>
+            <button id="add-projects">Add Project</button>
+            <div class="add-popup">
+                <input type="text" class="AddProject">
+                <button id="adding">Add</button>
+                <button id="goback">Go Back</button>
+            </div>
+        </div>
+    </aside>
+    <main class="main"></main>
 </body>
 </html>
