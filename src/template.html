@@ -12,7 +12,7 @@
             <h2 class="todo">Todo App</h2>
         </div>
     </header>
-    <aside class="aside-left">
+    <nav class="aside-left">
         <div class="side-top">
             <button id="home">Home</button>
             <button id="today">Today</button>
@@ -20,15 +20,50 @@
         </div>
         <div class="side-bottom">
             <h2 class="project-header">Projects</h2>
-            <div class="hold-projects"></div>
+            <!-- <div class="hold-projects"></div> -->
+            <aside class="hold-projects"></aside>
             <button id="add-projects">Add Project</button>
             <div class="add-popup">
+                <form class="project-form">
                 <input type="text" class="AddProject">
                 <button id="adding">Add</button>
                 <button id="goback">Go Back</button>
+                </form>
             </div>
         </div>
-    </aside>
-    <main class="main"></main>
+    </nav>
+    <main class="main">
+
+    </main>
+
+    <template id="projectListTemplate">
+        <div class="projectName"><ul></ul></div>
+    </template>
+
+    <!-- <template id="projectListTemplate">
+        <form class="project-form">
+        <input type="text" class="AddProject">
+        <button id="adding">Add</button>
+        <button id="goback">Go Back</button>
+        </form>
+    </template> -->
+<!-- 
+    <template id="projectListTemplate">
+      <button class="project-click"><ul></ul></button>
+    </template> -->
+
+
+
+    <!-- <template id="projectListTemplate">
+        <div class="project-container"><button></button></div>
+    </template>
+
+    <template id="projectFormTemplate">
+        <form class="project-form">
+            <input type="text" placeholder="Add Project"/>
+            <button>Add Project</button>
+            <button>Go Back</button>
+        </form>
+    </template> -->
 </body>
 </html>
