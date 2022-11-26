@@ -12,7 +12,7 @@
             <h2 class="todo">Todo App</h2>
         </div>
     </header>
-    <nav class="aside-left">
+    <div class="aside-left">
         <div class="side-top">
             <button id="home">Home</button>
             <button id="today">Today</button>
@@ -31,14 +31,54 @@
                 </form>
             </div>
         </div>
-    </nav>
-    <main class="main">
-
-    </main>
+    </div>
+    <div class="homemain">
+        <h2 class="home-header">Home</h2>
+        <button class="todoadd">Add Task</button>
+        <main class="all-tasks"></main>
+        <div class="todopoup">
+            <form class="todo-form">
+                <input type="text">
+                <button id="addT">Add</button>
+            </form>
+        </div>
+        <!-- <main></main> -->
+    </div>
+    <!-- <main></main>
+    <div class="main">
+        <div class="main-home">
+            <h2>Home</h2>
+            <main class="holdtodo"></main>
+            <button id="todo-adder">Add Task</button>
+        </div>
+            <div class="todo-pop">
+                <button id="todo-adder">Add Task</button>
+                <form class="todo-form">
+                    <input type="text" class="add-todo">
+                    <button id="addT">Add</button>
+                </form>
+            </div> -->
+        <!-- </div> -->
+        <!-- <main></main> -->
+        <!-- <div class="todo-popup">
+            <form class="todo-form">
+                <input type="text" class="add-todo">
+                <button id="addtodo">Add</button>
+            </form>
+        </div> -->
+    <!-- </div> -->
+    <!-- <div class="main-tody">
+        <h2>Today</h2>
+    </div> -->
 
     <template id="projectListTemplate">
         <div class="projectName"><ul></ul></div>
     </template>
+
+    <template id="todoListTemplate">
+        <div class="todoTask"><ul></ul></div>
+    </template>
+
 
     <!-- <template id="projectListTemplate">
         <form class="project-form">

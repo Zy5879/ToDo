@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO APP</title>
-<script defer src="bundle3468ebebb75dbecb12b6.js"></script></head>
+<script defer src="bundle5da7fa9248a66625534e.js"></script></head>
 <body class="loaded">
     <header class="header">
         <div class="main-header">
             <h2 class="todo">Todo App</h2>
         </div>
     </header>
-    <aside class="aside-left">
+    <div class="aside-left">
         <div class="side-top">
             <button id="home">Home</button>
             <button id="today">Today</button>
@@ -20,7 +20,8 @@
         </div>
         <div class="side-bottom">
             <h2 class="project-header">Projects</h2>
-            <div class="hold-projects"></div>
+            <!-- <div class="hold-projects"></div> -->
+            <aside class="hold-projects"></aside>
             <button id="add-projects">Add Project</button>
             <div class="add-popup">
                 <form class="project-form">
@@ -30,10 +31,45 @@
                 </form>
             </div>
         </div>
-    </aside>
-    <main class="main">
+    </div>
+    <div class="main">
+        
+    </div>
+    <!-- <main></main>
+    <div class="main">
+        <div class="main-home">
+            <h2>Home</h2>
+            <main class="holdtodo"></main>
+            <button id="todo-adder">Add Task</button>
+        </div>
+            <div class="todo-pop">
+                <button id="todo-adder">Add Task</button>
+                <form class="todo-form">
+                    <input type="text" class="add-todo">
+                    <button id="addT">Add</button>
+                </form>
+            </div> -->
+        <!-- </div> -->
+        <!-- <main></main> -->
+        <!-- <div class="todo-popup">
+            <form class="todo-form">
+                <input type="text" class="add-todo">
+                <button id="addtodo">Add</button>
+            </form>
+        </div> -->
+    </div>
+    <div class="main-tody">
+        <h2>Today</h2>
+    </div>
 
-    </main>
+    <template id="projectListTemplate">
+        <div class="projectName"><ul></ul></div>
+    </template>
+
+    <template id="todoListTemplate">
+        <div class="todoTask"><ul></ul></div>
+    </template>
+
 
     <!-- <template id="projectListTemplate">
         <form class="project-form">
