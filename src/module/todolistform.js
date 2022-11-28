@@ -27,6 +27,7 @@ import pubsub from "./pubsub";
 
 export const todoForm = (() => {
     const homeBtn = document.getElementById('home')
+    
     homeBtn.addEventListener('click', showHome)
 
     const homemain = document.querySelector('.homemain')
@@ -34,11 +35,15 @@ export const todoForm = (() => {
     // const todoadder = document.querySelector('.addT')
     const todopop = document.querySelector('.todopoup')
 
+    homeaddtask.addEventListener('click', showForm)
+
 
 
     function showHome() {
         homemain.style.display = 'block'
-        homeaddtask.addEventListener('click', showForm)
+        document.querySelector('.hometoday').style.display = 'none'
+        document.querySelector('.homeupcoming').style.display = 'none'
+        // homeaddtask.addEventListener('click', showForm)
     
     }
 
@@ -47,7 +52,6 @@ export const todoForm = (() => {
         document.querySelector('.todopoup').style.display = 'block'
         let form = document.querySelector('.todo-form')
         form.querySelector('button').addEventListener('click', addTaskForm)
-
 
 
     }
@@ -280,6 +284,20 @@ export const todoForm = (() => {
         console.log(`TODO FORM: a task ${task} has been added`)
         pubsub.publish('todoAdded', task)
     }
+
+//    const todayBtn = document.getElementById('today')
+//    todayBtn.addEventListener('click', () => {
+//         document.querySelector('.homemain').style.display = 'none';
+//         document.querySelector('.homeupcoming').style.display = 'none'
+//         document.querySelector('.hometoday').style.display = 'block'
+//    })
+
+//    const upcomingBtn = document.getElementById('upcoming')
+//    upcomingBtn.addEventListener('click', () => {
+//     document.querySelector('.homemain').style.display = 'none'
+//     document.querySelector('.hometoday').style.display = 'none'
+//     document.querySelector('.homeupcoming').style.display = 'block'
+//    })
 
     // function showClick() {
     //     console.log("REGISTER CLICK")

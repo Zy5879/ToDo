@@ -30,16 +30,36 @@ export const todolist = (() => {
         console.log('todoUpdated', task)
         pubsub.publish('todoUpdated',task)
 
-        let ul2 = document.querySelector('.todoTask ul')
-        ul2.innerText = ''
-        let df2 = document.createDocumentFragment()
-        taskList.forEach(task => {
-            let li2 = document.createElement('li')
-            li2.innerText = task
-            df2.appendChild(li2)
+        let ul = document.querySelector('.todoTask ul')
+        ul.innerHTML =''
+        let df = document.createDocumentFragment()
+        taskList.forEach(name => {
+            let button = document.createElement('button')
+            let li = document.createElement('li')
+            button.innerText = name;
+            li.appendChild(button)
+            df.appendChild(li)
         });
-        ul2.appendChild(df2)
-        // main.appendChild(ul2)
+        ul.appendChild(df);
+
+        // let ul2 = document.querySelector('.todoTask ul')
+        // ul2.innerText = ''
+        // const df = createDocumentFragment()
+
+        // taskList.forEach(task => {
+        //     let button = document.createElement('button')
+        //     button.innerHTML = task
+        //     ul2.appendChild(button)
+        // })
+        // let df2 = document.createDocumentFragment()
+        // taskList.forEach(task => {
+        //     let li2 = document.createElement('li')
+        //     li2.innerText = task
+        //     df2.appendChild(li2)
+        // });
+
+        // ul2.appendChild(df2)
+            // main.appendChild(ul2)
         // let li = document.createElement('li')
         // li.innerText = task
         // df.appendChild(li)

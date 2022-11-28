@@ -10,11 +10,22 @@ aside {
     display: none;
 }
 
+.todopoup {
+    display: none;
+}
+
+.hometoday {
+    display: none;
+}
+
+.homeupcoming {
+    display: none;
+}
 /* .task-popup {
     display: none;
 } */
 
-.homemain {
+/* .homemain {
     display: none
 }
 

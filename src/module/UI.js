@@ -1,5 +1,23 @@
 
 export const UI = (() => {
+
+    const todayBtn = document.getElementById('today')
+    todayBtn.addEventListener('click', () => {
+         document.querySelector('.homemain').style.display = 'none';
+         document.querySelector('.homeupcoming').style.display = 'none'
+         document.querySelector('.hometoday').style.display = 'block'
+    })
+ 
+    const upcomingBtn = document.getElementById('upcoming')
+    upcomingBtn.addEventListener('click', () => {
+     document.querySelector('.homemain').style.display = 'none'
+     document.querySelector('.hometoday').style.display = 'none'
+     document.querySelector('.homeupcoming').style.display = 'block'
+    })
+//    const todayBtn = document.getElementById('today')
+//    todayBtn.addEventListener('click', () => {
+//         document.querySelector('body').style.display = 'none';
+//    })
     // const main = document.querySelector('.main')
     // const homeBtn = document.getElementById('home')
     // homeBtn.addEventListener('click', () => {
