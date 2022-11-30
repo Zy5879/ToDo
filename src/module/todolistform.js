@@ -43,6 +43,8 @@ export const todoForm = (() => {
         homemain.style.display = 'block'
         document.querySelector('.hometoday').style.display = 'none'
         document.querySelector('.homeupcoming').style.display = 'none'
+        document.querySelector('.projectmain').style.display = 'none'
+
         // homeaddtask.addEventListener('click', showForm)
     
     }

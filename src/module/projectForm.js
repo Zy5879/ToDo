@@ -3,7 +3,12 @@ import pubsub from './pubsub'
 export const projectForm = (() => {
     const addBtn = document.getElementById('add-projects')
     addBtn.addEventListener('click', showInput)
+
+    const taskAdd = document.getElementById('addprojectask')
+    taskAdd.addEventListener('click', showTaskInput)
+
     const addpopup = document.querySelector('.add-popup')
+    const addtask = document.querySelector('.addtask')
 
     function showInput() {
         addBtn.style.display = 'none'
@@ -35,4 +40,25 @@ export const projectForm = (() => {
         pubsub.publish('projectAdded',name)
 
     }
+    function showTaskInput() {
+        taskAdd.style.display = 'none';
+
+        addtask.style.display = 'block';
+
+        let form = document.querySelector('.projectasks')
+        form.querySelector('button').addEventListener('click', addTaskToProject) 
+    }
+
+    function addTaskToProject(e) {
+        e.preventDefault(e)
+        let input = document.querySelector('.projectasks input')
+        let name = input.value;
+        input.value = '';
+
+        taskAdd.style.display = 'block';
+        addtask.style.display = 'none'
+
+        console.log(`PROJECT FORM: a task ${name} has been added to a project`)
+    }
+
 })()

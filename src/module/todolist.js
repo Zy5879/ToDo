@@ -30,17 +30,46 @@ export const todolist = (() => {
         console.log('todoUpdated', task)
         pubsub.publish('todoUpdated',task)
 
-        let ul = document.querySelector('.todoTask ul')
-        ul.innerHTML =''
+        let div = document.querySelector('.todoTask')
+        div.innerHTML = ''
         let df = document.createDocumentFragment()
-        taskList.forEach(name => {
+        taskList.forEach(task => {
             let button = document.createElement('button')
-            let li = document.createElement('li')
-            button.innerText = name;
-            li.appendChild(button)
-            df.appendChild(li)
-        });
-        ul.appendChild(df);
+            button.classList.add('todo-content')
+            let div2 = document.createElement('div')
+            let ptask = document.createElement('p')
+            ptask.innerHTML = task
+            div2.appendChild(ptask)
+            button.appendChild(div2)
+            df.appendChild(button)
+        })
+        div.appendChild(df)
+
+
+        // let ul = document.querySelector('.todoTask ul')
+        // ul.innerHTML =''
+        // let df = document.createDocumentFragment()
+        // taskList.forEach(name => {
+        //     let button = document.createElement('button')
+        //     let divleft = document.createElement('div')
+        //     let divleftp = document.createElement('p')
+        //     divleftp.innerText = name
+        //     divleft.appendChild(divleftp)
+        //     let divright = document.createElement('div')
+        //     let divrightinput = document.createElement('input')
+        //     divrightinput.classList.add('date-picker')
+        //     divrightinput.setAttribute('type','date')            
+        //     let divrightp = document.createElement('p')
+            // divrightp.innerText = divrightinput
+            // divright.append(divrightinput,divrightp)
+            // button.append(divleft,divright)
+            // df.appendChild(button)
+            // let li = document.createElement('li')
+            // button.innerText = name;
+            // li.appendChild(button)
+            // df.appendChild(li)
+        // });
+        // ul.appendChild(df);
 
         // let ul2 = document.querySelector('.todoTask ul')
         // ul2.innerText = ''

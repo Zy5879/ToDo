@@ -2,9 +2,25 @@
 export const UI = (() => {
 
     const todayBtn = document.getElementById('today')
+    // todayBtn.addEventListener('click',showToday)
+
+    // function showToday() {
+    //     document.querySelector('.homemain').style.display = "none";
+    //     document.querySelector('.homeupcoming').style.display = 'none';
+    //     document.querySelector('.hometoday').style.display = 'block';
+    // }
+
+    // function hideOtherForm() {
+    //     projectmain.style.display = "none"
+        // document.querySelector('.homemain').style.display = 'none'
+        // document.querySelector('.hometoday').style.display = 'none'
+        // document.querySelector('.projectmain').style.display = 'none';
+        // document.querySelector('.homeupcoming').style.display = 'block'
+    // }
     todayBtn.addEventListener('click', () => {
          document.querySelector('.homemain').style.display = 'none';
          document.querySelector('.homeupcoming').style.display = 'none'
+         document.querySelector('.projectmain').style.display = 'none'
          document.querySelector('.hometoday').style.display = 'block'
     })
  
@@ -12,6 +28,7 @@ export const UI = (() => {
     upcomingBtn.addEventListener('click', () => {
      document.querySelector('.homemain').style.display = 'none'
      document.querySelector('.hometoday').style.display = 'none'
+     document.querySelector('.projectmain').style.display = 'none'
      document.querySelector('.homeupcoming').style.display = 'block'
     })
 //    const todayBtn = document.getElementById('today')
