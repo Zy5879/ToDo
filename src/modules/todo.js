@@ -52,5 +52,3 @@ const ProjectFactory = (name,id) => {
 
 export {TodoFactory, ProjectFactory}
 
-let task = ProjectFactory('CsKK')
-task.addTask('NNN')
