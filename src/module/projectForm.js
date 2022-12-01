@@ -1,11 +1,12 @@
 import pubsub from './pubsub'
+import { ProjectFactory } from './projectfactory'
 
 export const projectForm = (() => {
     const addBtn = document.getElementById('add-projects')
     addBtn.addEventListener('click', showInput)
 
     const taskAdd = document.getElementById('addprojectask')
-    taskAdd.addEventListener('click', showTaskInput)
+    // taskAdd.addEventListener('click', showTaskInput)
 
     const addpopup = document.querySelector('.add-popup')
     const addtask = document.querySelector('.addtask')
@@ -40,25 +41,26 @@ export const projectForm = (() => {
         pubsub.publish('projectAdded',name)
 
     }
-    function showTaskInput() {
-        taskAdd.style.display = 'none';
+    // function showTaskInput() {
+    //     taskAdd.style.display = 'none';
 
-        addtask.style.display = 'block';
+    //     addtask.style.display = 'block';
 
-        let form = document.querySelector('.projectasks')
-        form.querySelector('button').addEventListener('click', addTaskToProject) 
-    }
+    //     let form = document.querySelector('.projectasks')
+    //     form.querySelector('button').addEventListener('click', addTaskToProject) 
+    // }
 
-    function addTaskToProject(e) {
-        e.preventDefault(e)
-        let input = document.querySelector('.projectasks input')
-        let name = input.value;
-        input.value = '';
+    // function addTaskToProject(e) {
+    //     e.preventDefault(e)
+    //     let input = document.querySelector('.projectasks input')
+    //     let name = input.value;
+    //     input.value = '';
 
-        taskAdd.style.display = 'block';
-        addtask.style.display = 'none'
 
-        console.log(`PROJECT FORM: a task ${name} has been added to a project`)
-    }
+    //     taskAdd.style.display = 'block';
+    //     addtask.style.display = 'none';
+
+    //     console.log(`PROJECT FORM: a task ${name} has been added to a project`)
+    // }
 
 })()

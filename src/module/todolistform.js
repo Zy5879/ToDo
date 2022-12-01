@@ -30,6 +30,12 @@ export const todoForm = (() => {
     
     homeBtn.addEventListener('click', showHome)
 
+    const taskAdd = document.getElementById('addprojectask')
+    taskAdd.addEventListener('click', showTaskInput)
+
+    const addtask = document.querySelector('.addtask')
+
+
     const homemain = document.querySelector('.homemain')
     const homeaddtask = document.querySelector('.todoadd')
     // const todoadder = document.querySelector('.addT')
@@ -285,6 +291,28 @@ export const todoForm = (() => {
         //tell people that a task has been added
         console.log(`TODO FORM: a task ${task} has been added`)
         pubsub.publish('todoAdded', task)
+    }
+
+    function showTaskInput() {
+        taskAdd.style.display = 'none';
+
+        addtask.style.display = 'block';
+
+        let form = document.querySelector('.projectasks')
+        form.querySelector('button').addEventListener('click', addTaskToProject) 
+    }
+
+    function addTaskToProject(e) {
+        e.preventDefault(e)
+        let input = document.querySelector('.projectasks input')
+        let name = input.value;
+        input.value = '';
+
+
+        taskAdd.style.display = 'block';
+        addtask.style.display = 'none';
+
+        console.log(`TASK FORM: a task ${name} has been added to a project`)
     }
 
 //    const todayBtn = document.getElementById('today')

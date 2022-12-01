@@ -4,6 +4,7 @@ export const ProjectFactory = (name,id = uuidv4()) => {
     return {
         name:name,
         todos,
+        id,
         // id:uuidv4(),
 
         getProject() {
