@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+.project-form {
+    display: none;
+}
+
+.task-form {
+    display: none;
+}
