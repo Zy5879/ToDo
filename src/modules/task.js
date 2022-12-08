@@ -90,6 +90,7 @@ export const todo = (() => {
             
         // }
 
+
         
 
         // divul.appendChild(df)
@@ -107,10 +108,10 @@ export const todo = (() => {
                 btn.style.display  = 'none';
                 const input = document.createElement('input')
                 input.setAttribute('type','text')
+                input.classList.add('change-task')
                 btnright.appendChild(input)
             })
         })
-
 
         // let ul = document.querySelector('.todotask ul')
         // ul.innerText = ''
@@ -123,13 +124,7 @@ export const todo = (() => {
         //     df.appendChild(li)
         // })
         // ul.appendChild(df)
-
     }
-
-    function changeTask() {
-       
-    }
-
     // document.querySelectorAll('.task-name').forEach(btn => {
     //     btn.addEventListener('click', changeTask)
     // })

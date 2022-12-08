@@ -30,9 +30,10 @@ export const projects = (() => {
         ul.innerHTML = '';
         let df = document.createDocumentFragment()
         projectlist.forEach(projectname => {
-            let li = document.createElement('button')
+            let li = document.createElement('li')
             li.classList.add('project-type')
             li.innerText = `${projectname.name}`;
+
             li.addEventListener('click', () => {
                 const projectPage = document.querySelector('.ShowProjects')
                 while(projectPage.firstChild) {
@@ -71,7 +72,6 @@ export const projects = (() => {
             // })
                 // console.log(li.innerText)
             // li.innerText = `${projectname.name}`;
-
             df.appendChild(li)
         })
         ul.appendChild(df)
