@@ -7,15 +7,16 @@ import {v4 as uuidv4} from "uuid"
         id,
         todos,
         setProjectName(value) {
-            name = value
+            name == value
         },
         getProjectName() {
             return name
         },
-        setTodo(tasks) {
-            todos = tasks
+        setTodo(tasks,date) {
+            todos.task == tasks
+            todos.date == date
         },
-        addTodo(task) {
+        addTask(task) {
             if(todos.find((todo) => todo.getProjectName() === task)) return
             todos.push(task)
         },
@@ -26,5 +27,6 @@ import {v4 as uuidv4} from "uuid"
         
     }
 }
+let user1 = Projects('Task')
+console.log(user1.getProjectName())
 
-let user1 = Projects('Name')

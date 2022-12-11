@@ -1,7 +1,8 @@
 import pubsub from "./modules/pubsub";
 import { Task } from "./modules/task";
 import { Projects } from "./modules/project";
-
+import { TodoController } from "./modules/TodoController";
+import styles from './style/styles.css'
 
 // import { TodoFactory, ProjectFactory, ProjectManger } from "./modules/todo";
 // import {todo} from './modules/task'
