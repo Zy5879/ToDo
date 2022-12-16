@@ -50,6 +50,12 @@ export const TodoController = (() => {
     const deleteTodo = (projectname, task) => {
         return getProject(projectname).deleteTask(task)
     }
+
+    const editProjectTodo = (projectname,task,date) => {
+        return getProject(projectname).editTodo(task,date)
+    }
+
+    // const editTodo = (projectname)
    
     return {
         projects,
@@ -57,14 +63,16 @@ export const TodoController = (() => {
         deleteProject,
         getProject,
         deleteTodo,
-        addTodo
+        addTodo,
+        editProjectTodo
     }
 })
 
 let user1 = TodoController()
 user1.addProject('Name')
 user1.addTodo('Name','task','11/22/2022')
-user1.deleteTodo('Name','task')
+user1.editProjectTodo('Name','netask','1/2/2022')
+
 
 
 console.log(user1)
