@@ -1,8 +1,15 @@
 import pubsub from "./modules/pubsub";
 import { Task } from "./modules/task";
 import { Projects } from "./modules/project";
-import { TodoController } from "./modules/TodoController";
+import TodoController from "./modules/TodoController";
+import {projectForm, projects } from "./modules/UI";
 import styles from './style/styles.css'
+
+document.addEventListener('DOMContentLoaded', () => {
+    let nav = document.querySelector('.hold-projects');
+
+    projects.renderTemp(nav)
+})
 
 // import { TodoFactory, ProjectFactory, ProjectManger } from "./modules/todo";
 // import {todo} from './modules/task'

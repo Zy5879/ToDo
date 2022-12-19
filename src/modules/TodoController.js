@@ -26,7 +26,7 @@ import { Task } from "./task";
 //     }
 // }
 
-export const TodoController = (() => {
+ const TodoController = (() => {
     let projects = []
     const addProject = (projectname) => {
         if(projects.find((project) => project.name === projectname.name))
@@ -66,12 +66,16 @@ export const TodoController = (() => {
         addTodo,
         editProjectTodo
     }
-})
+})()
 
-let user1 = TodoController()
+export default TodoController
+
+let user1 = TodoController
 user1.addProject('Name')
-user1.addTodo('Name','task','11/22/2022')
-user1.editProjectTodo('Name','netask','1/2/2022')
+// let user1 = TodoController().addProject('Name')
+// user1.addProject('Name')
+// user1.addTodo('Name','task','11/22/2022')
+// user1.editProjectTodo('Name','netask','1/2/2022')
 
 
 
