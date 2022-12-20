@@ -19,7 +19,9 @@
         <button data-modal-target="#modal" id="add-project">New Project</button>
     </div>
     <div class="showprojects">
-
+        <h2 class="currentproject"></h2>
+        <nav class="hold-todos"></nav>
+        <button data-todomodal-target="#todomodal" id="add-task">New Task</button>
     </div>
     </main>
     <div class="modal" id="modal">
@@ -34,10 +36,25 @@
             </form>
         </div>
     </div>
+
+    <div class="todomodal" id="todomodal">
+        <div class="todomodal-header">
+            <div class="title">New Task</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="todomodal-body">
+            <form id="todoform">
+                <input type="text" id="inputTask">
+                <input type="date" id="inputDate">
+                <button type="submit" id="taskbtn">Submit</button>
+            </form>
+        </div>
+    </div>
+
     <div id="overlay"></div>
 
     <template id="projectListTemplate">
-        <div class="projectname"><button><p></p></button></div>
+        <div class="projectname"></div>
     </template>
 
 </body>

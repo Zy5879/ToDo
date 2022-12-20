@@ -5,8 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO APP</title>
-<script defer src="bundle735c82bfcf13cf0bf8cd.js"></script></head>
+<script defer src="bundle369cfeea9c40df96d59e.js"></script></head>
 <body>
-    
+    <header class="head">
+        <div class="main-header">
+            <h1 class="todo">Todo App</h1>
+        </div>
+    </header>
+    <main class="navigation">
+    <div class="info">
+        <h2 class="project-header">Projects</h2>
+        <nav class="hold-projects"></nav>
+        <button data-modal-target="#modal" id="add-project">New Project</button>
+    </div>
+    <div class="showprojects">
+        <h2 class="currentproject"></h2>
+        <nav class="hold-todos"></nav>
+        <button data-todomodal-target="#todomodal" id="add-task">New Task</button>
+    </div>
+    </main>
+    <div class="modal" id="modal">
+        <div class="projectmodal-header">
+            <div class="title">New Project</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="projectmodal-body">
+            <form id="projectform">
+                <input type="text" id="inputProjectName">
+                <button type="submit" id="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="todomodal" id="todomodal">
+        <div class="todomodal-header">
+            <div class="title">New Task</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="todomodal-body">
+            <form id="todoform">
+                <input type="text" id="inputTask">
+                <input type="date" id="inputDate">
+                <button type="submit" id="taskbtn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="overlay"></div>
+
+    <template id="projectListTemplate">
+        <div class="projectname"></div>
+    </template>
+
 </body>
 </html>

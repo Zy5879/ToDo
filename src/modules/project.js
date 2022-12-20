@@ -17,9 +17,9 @@ import { Task } from "./task"
             todos.task == tasks
             todos.date == date
         },
-        addTask(task,date) {
-            if(todos.find((todo) => todo.getProjectName() === task)) return
-             todos.push(Task(task,date))
+        addTask(task) {
+            // if(todos.find((todo) => todo.getProjectName() === task)) return
+             return todos.push(Task(task))
         },
         deleteTask(target){
             const grabTask = todos.find((todo) => todo.name === target)

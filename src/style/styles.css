@@ -19,6 +19,23 @@
     transform: translate(-50%,-50%) scale(1);
 }
 
+.todomodal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    transition: 200ms ease-in-out;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    height: 300px;
+    max-width: 80%;
+}
+
+.todomodal.active {
+    transform: translate(-50%,-50%) scale(1);
+}
+
 #overlay {
     position: fixed;
     opacity: 0;
