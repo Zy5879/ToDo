@@ -3,6 +3,7 @@ import pubsub from "./pubsub";
 import { Task } from "./task";
 import TodoController from "./TodoController";
 import { format } from "date-fns";
+import differenceInCalendarISOWeeks from "date-fns/esm/fp/differenceInCalendarISOWeeks/index.js";
 
 //  const projectmodal = (() => {
 //     const openModalButtons = document.querySelectorAll('[data-modal-target]')
@@ -79,6 +80,14 @@ const projects = (() => {
             button.addEventListener('click', () => {
                 const currentproject = document.querySelector('.currentproject')
                 currentproject.textContent = `${name.name}`
+                const displaytodos = document.querySelector('.hold-todos')
+                while(displaytodos.firstChild) {
+                    displaytodos.removeChild(displaytodos.firstChild)
+                }
+                const todosubmit = document.getElementById('taskbtn')
+                todosubmit.addEventListener('click',displayTodo)
+                showCurrentTodos()
+                // displayTodos()
                 // const taskbutton  = document.getElementById('taskbtn')
                 // taskbutton.addEventListener('click', (e) => {
                 //     e.preventDefault()
@@ -325,27 +334,75 @@ const projects = (() => {
         overlay.classList.remove('active')
     }
 
-    const todosubmit = document.getElementById('taskbtn')
-    todosubmit.addEventListener('click', (e) => {
+    function displayTodo(e) {
+        e.preventDefault()
         let userone = TodoController
-        // let projects = userone.projects
         const currentproject = document.querySelector('.currentproject').textContent
-         e.preventDefault()
-        let inputtext = document.getElementById('inputTask')
-        let task = inputtext.value;
-        inputtext.value = '';
-            
+        let input = document.getElementById('inputTask')
+        let task = input.value
+        input.value = '';
+
         let inputdate = document.getElementById('inputDate')
         let date = inputdate.value;
-        inputdate.value =  ''
-        console.log(userone.addTodo(currentproject,task,date))
-            
+        inputdate.value = '';
 
-                    // projects.forEach(project => {
+        console.log(userone.addTodo(currentproject,task,date))
+        const p = document.createElement('p')
+        p.textContent = task
+        const p2 = document.createElement('p')
+        p2.textContent = date;
+
+        const nav = document.querySelector('.hold-todos')
+        nav.append(p,p2)
+
+    }
+
+    function showCurrentTodos() {
+        let userone = TodoController
+        const currentproject = document.querySelector('.currentproject').textContent
+        console.log(userone.getProject(currentproject).todos)
+
+        const nav = document.querySelector('.hold-todos')
+        for(const objIndex of userone.getProject(currentproject).todos) {
+            const list = document.createElement('div')
+            list.setAttribute('class',objIndex);
+            for(const key in objIndex) {
+                const liElemnt = document.createElement('p');
+                // liElemnt.textContent = `${key}:${objIndex[key]}`;
+                liElemnt.textContent = `${objIndex[key]}`
+                list.appendChild(liElemnt)
+            }
+            nav.appendChild(list)
+        }
+    }
+
+    // const todosubmit = document.getElementById('taskbtn')
+    // todosubmit.addEventListener('click', (e) => {
+    //     let userone = TodoController
+        // let projects = userone.projects
+        // const currentproject = document.querySelector('.currentproject').textContent
+        //  e.preventDefault()
+        // let inputtext = document.getElementById('inputTask')
+        // let task = inputtext.value;
+        // inputtext.value = '';
+            
+        // let inputdate = document.getElementById('inputDate')
+        // let date = inputdate.value;
+        // inputdate.value =  ''
+        // console.log(date)
+        // console.log(userone.addTodo(currentproject,task,date))
+        // const p = document.createElement('p')
+        // p.innerText = task
+        // const nav = document.querySelector('.hold-todos')
+        // nav.appendChild(p)
+        // console.log(userone.getProject(currentproject).todos)
+        // let currenttodos = userone.getProject(currentproject).todos
+        // currenttodos.forEach(task) 
+ // projects.forEach(project => {
                     //     console.log(userone.addTodo(`${project.name}`,task))
                     // })
 
-                })
+                // })
     // const todosubmit = document.getElementById('taskbtn')
     // todosubmit.addEventListener('click',addTodoToProject)
 
@@ -552,6 +609,22 @@ const projects = (() => {
 //         overlay.classList.remove('active')
 //     }
 
+    // function displayTodos() {
+    //     const nav = document.querySelector('.hold-todos')
+        
+    // }
+
+    // function displayTodos() {
+    //     const currentproject = document.querySelector('.currentproject').textContent
+    //     let userone = TodoController
+    //     let projecttodos = userone.getProject(currentproject).todos
+
+    //     const nav = document.createElement('p')
+    //     nav.textContent = `${projecttodos}`
+    //     const holdtodos = document.querySelector('.hold-todos')
+    //     holdtodos.appendChild(nav)
+    //    console.log(projecttodos)
+    // }
 
     return {
         renderTemp
