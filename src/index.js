@@ -6,10 +6,15 @@ import {projectForm, projects } from "./modules/UI";
 import styles from './style/styles.css'
 
 document.addEventListener('DOMContentLoaded', () => {
-    let nav = document.querySelector('.hold-projects');
+    let div = document.querySelector('.user-projects')
 
-    projects.renderTemp(nav)
+    projects.renderTemp(div)
 })
+// document.addEventListener('DOMContentLoaded', () => {
+//     let nav = document.querySelector('.hold-projects');
+
+//     projects.renderTemp(nav)
+// })
 
 // import { TodoFactory, ProjectFactory, ProjectManger } from "./modules/todo";
 // import {todo} from './modules/task'
