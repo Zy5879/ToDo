@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO APP</title>
-<script defer src="bundleed24043949b74f774dc4.js"></script></head>
+<script defer src="bundle9d803781e1f15386e44d.js"></script></head>
 <body>
     <header class="head">
         <div class="main-header">
@@ -20,7 +20,9 @@
     </div>
     <div class="showprojects">
         <h2 class="currentproject"></h2>
-        <nav class="hold-todos"></nav>
+        <nav class="hold-todos">
+            <!-- <div class="task-content"></div> -->
+        </nav>
         <button data-todomodal-target="#todomodal" id="add-task">New Task</button>
     </div>
     </main>
@@ -45,7 +47,7 @@
         <div class="todomodal-body">
             <form id="todoform">
                 <input type="text" id="inputTask">
-                <input type="text" id="inputDate">
+                <input type="date" id="inputDate">
                 <button type="submit" id="taskbtn">Submit</button>
             </form>
         </div>
@@ -57,5 +59,8 @@
         <div class="projectname"></div>
     </template>
 
+    <template id="todoListTemplate">
+        <div class="task-content"></div>
+    </template>
 </body>
 </html>

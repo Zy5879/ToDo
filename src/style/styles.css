@@ -53,6 +53,26 @@
     opacity: 1;
 }
 
+#add-task {
+    display: none;
+}
+
+.close {
+    /* max-width: 30px;
+    height: 50px; */
+    /* pointer-events: none; */
+    display: inline-block;
+    cursor: pointer;
+}
+
+.project-content button {
+    display: flex;
+    align-items: center;    
+}
+
+/* .project-content {
+    display: grid;
+} */
 /* .project-form {
     display: none;
 } */

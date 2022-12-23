@@ -3,6 +3,7 @@ import pubsub from "./pubsub";
 import { Task } from "./task";
 import TodoController from "./TodoController";
 import { format } from "date-fns";
+import close from '../assets/close.svg'
 import differenceInCalendarISOWeeks from "date-fns/esm/fp/differenceInCalendarISOWeeks/index.js";
 
 //  const projectmodal = (() => {
@@ -77,17 +78,39 @@ const projects = (() => {
             let div = document.createElement('div')
             div.classList.add('project-content')
             let button =  document.createElement('button')
-            button.addEventListener('click', () => {
-                const currentproject = document.querySelector('.currentproject')
-                currentproject.textContent = `${name.name}`
-                const displaytodos = document.querySelector('.hold-todos')
-                while(displaytodos.firstChild) {
-                    displaytodos.removeChild(displaytodos.firstChild)
-                }
-                const todosubmit = document.getElementById('taskbtn')
-                todosubmit.addEventListener('click',displayTodo)
-                showCurrentTodos()
-                // displayTodos()
+            button.classList.add('projectindex')
+            let buttondiv = document.createElement('div')
+
+            // button.addEventListener('click', (e) => {
+            //     if(e.target.className == 'name') {
+            //         const currentproject = document.querySelector('.currentproject')
+            //         currentproject.textContent = `${name.name}`
+            //         const displaytodos = document.querySelector('.hold-todos')
+            //         while(displaytodos.firstChild) {
+            //             displaytodos.removeChild(displaytodos.firstChild)
+            //         }
+            //         displayTodos()
+            //         showCurrentTodos()
+            //         const addTask = document.getElementById('add-task')
+            //         addTask.style.display = 'block'
+            //     }
+            //     else if(e.target.className == 'close') {
+            //         const currentproject = document.querySelector('.project-content')
+            //         const
+            //         console.log(userone.deleteProject(currentproject))
+                // }
+                // const currentproject = document.querySelector('.currentproject')
+                // currentproject.textContent = `${name.name}`
+                // const displaytodos = document.querySelector('.hold-todos')
+                // while(displaytodos.firstChild) {
+                //     displaytodos.removeChild(displaytodos.firstChild)
+                // }
+            //     const todosubmit = document.getElementById('taskbtn')
+            //     todosubmit.addEventListener('click',displayTodo)
+            //     showCurrentTodos()
+            //     const addTask = document.getElementById('add-task')
+            //     addTask.style.display = 'block'
+            //     displayTodos()
                 // const taskbutton  = document.getElementById('taskbtn')
                 // taskbutton.addEventListener('click', (e) => {
                 //     e.preventDefault()
@@ -101,10 +124,15 @@ const projects = (() => {
 
                 //     console.log(userone.addTodo(`${name.name}`,task))
                 // })
-            })
-            let pbutton = document.createElement('p')
-            pbutton.textContent = `${name.name}`
-            button.appendChild(pbutton)
+            // })
+            let spanbutton = document.createElement('span')
+            spanbutton.textContent = `${name.name}`
+            spanbutton.classList.add('name')
+            let pimg = new Image()
+            pimg.classList.add('close')
+            pimg.src = close
+            buttondiv.append(pimg,spanbutton)
+            button.appendChild(buttondiv)
             div.appendChild(button)
             df.appendChild(div)
 
@@ -123,6 +151,18 @@ const projects = (() => {
             //     })
         })
         projectnamediv.appendChild(df)
+        const div = document.querySelector('.project-content')
+        const spanbutton = document.querySelector('.name').textContent
+        div.addEventListener('click', (e) => {
+            if(e.target.className == 'close') {
+                const button = e.target.parentElement
+                div.removeChild(button)
+                console.log(userone.deleteProject(spanbutton))
+            }
+        })
+
+        // const pimg = document.querySelector('.close')
+        // pimg.addEventListener('click',deleteProject)
 
 
         // const displayprojects = document.querySelector('.showprojects')
@@ -296,8 +336,21 @@ const projects = (() => {
         //     }
             // let p = document.querySelector('.projectname p')
     //         // p.innerText = `${name}`
-    //     })
+        // })
     }
+
+    // function deleteProject(e) {
+    //     if(e.target.className === 'close') {
+    //         console.log('Hey')
+        // }
+        // let userone = TodoController
+        // const pbutton = document.querySelector('.name').textContent
+        // console.log(userone.deleteProject(pbutton))
+    // })
+
+    const taskbtn = document.getElementById('taskbtn')
+    taskbtn.addEventListener('click', displayTodo)
+
 
     const openTodoModalButtons = document.querySelectorAll('[data-todomodal-target]')
     const closeTodoModalButtons = document.querySelectorAll('[data-close-button]')
@@ -347,13 +400,38 @@ const projects = (() => {
         inputdate.value = '';
 
         console.log(userone.addTodo(currentproject,task,date))
+        const div = document.createElement('div')
+        div.classList.add('task-content')
+
+        const button = document.createElement('button')
+        button.classList.add('taskindex')
+        const divrightside = document.createElement('div')
+        divrightside.classList.add('rightside')
+        // divrightside.appendChild(p)
+
+        const divleftside = document.createElement('div')
+        divleftside.classList.add('leftside')
+
+        // divleftside.appendChild(p2)
+        // div.append(divleftside,divrightside)
+
         const p = document.createElement('p')
         p.textContent = task
         const p2 = document.createElement('p')
         p2.textContent = date;
 
         const nav = document.querySelector('.hold-todos')
-        nav.append(p,p2)
+
+        divrightside.appendChild(p)
+        divleftside.appendChild(p2)
+
+
+        button.append(divrightside,divleftside)
+        div.appendChild(button)
+
+
+        nav.appendChild(div)
+        // nav.append(p,p2)
 
     }
 
@@ -364,11 +442,42 @@ const projects = (() => {
 
         const nav = document.querySelector('.hold-todos')
         for(const objIndex of userone.getProject(currentproject).todos) {
+            const div = document.createElement('div')
+            div.classList.add('task-content')
+
+            const button = document.createElement('button')
+            button.classList.add('taskindex')
+
+            const divleftside = document.createElement('div')
+            divleftside.classList.add('leftside')
+            const leftsidep = document.createElement('p')
+            leftsidep.textContent = objIndex.task
+            divleftside.appendChild(leftsidep)
+
+            const divrightside = document.createElement('div')
+            divrightside.classList.add('rightside')
+            const rightsidep = document.createElement('p')
+            rightsidep.textContent = objIndex.duedate
+            divrightside.appendChild(rightsidep)
+
+            button.append(divleftside,divrightside)
+            div.appendChild(button)
+            nav.appendChild(div)
+            console.log(objIndex.duedate)
             const list = document.createElement('div')
             list.setAttribute('class',objIndex);
             for(const key in objIndex) {
+                const div = document.createElement('div')
+                div.classList.add('task-content')
+                const button = document.createElement('button')
+                const divleftside = document.createElement('div')
+                divleftside.classList.add('leftside')
+                divleftside.appendChild(liElemnt)
+                const divrightside = document.createElement('div')
+                divrightside.classList.add('rightside')
                 const liElemnt = document.createElement('p');
-                // liElemnt.textContent = `${key}:${objIndex[key]}`;
+                button.append(divleftside,divrightside)
+                liElemnt.textContent = `${key}:${objIndex[key]}`;
                 liElemnt.textContent = `${objIndex[key]}`
                 list.appendChild(liElemnt)
             }
@@ -614,17 +723,17 @@ const projects = (() => {
         
     // }
 
-    // function displayTodos() {
-    //     const currentproject = document.querySelector('.currentproject').textContent
-    //     let userone = TodoController
-    //     let projecttodos = userone.getProject(currentproject).todos
+    function displayTodos() {
+        const currentproject = document.querySelector('.currentproject').textContent
+        let userone = TodoController
+        let projecttodos = userone.getProject(currentproject).todos
 
-    //     const nav = document.createElement('p')
-    //     nav.textContent = `${projecttodos}`
-    //     const holdtodos = document.querySelector('.hold-todos')
-    //     holdtodos.appendChild(nav)
-    //    console.log(projecttodos)
-    // }
+        const nav = document.createElement('p')
+        nav.textContent = `${projecttodos}`
+        const holdtodos = document.querySelector('.hold-todos')
+        holdtodos.appendChild(nav)
+       console.log(projecttodos)
+    }
 
     return {
         renderTemp
