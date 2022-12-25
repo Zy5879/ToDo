@@ -765,7 +765,11 @@ const projects = (() => {
         let projectnamediv = document.querySelector('.projectname')
         let userprojects = document.querySelector('.user-projects')
         const addTask = document.getElementById('add-task')
-        // addTask.style.display = 'none'
+        const currentproject = document.querySelector('.currentproject')
+
+        currentproject.textContent = name
+
+        addTask.style.display = 'block'
 
         projectnamediv.textContent = '';
         let df = document.createDocumentFragment()
@@ -851,9 +855,10 @@ const projects = (() => {
                     // showCurrentTodos()
                 }
                 if(e.target.className == 'close') {
-                    const currentproject = document.querySelector('.currentproject')
-                    currentproject.textContent = `${name.name}`
+                    const currentproject = document.querySelector('.currentproject').textContent
+                    // currentproject.textContent = '';
                     userone.deleteProject(name)
+                    addTask.style.display = 'none'
                     // list = list.filter(nm => nm !== `${name.name}`)
                     const button = e.target.closest('.projectindex')
                     button.parentElement.removeChild(button)
@@ -1022,6 +1027,18 @@ const projects = (() => {
         const todobutton = document.createElement('button')
         todobutton.classList.add('task-content')
 
+        todobutton.addEventListener('click', (e) => {
+            if(e.target.className == 'delete') {
+                const currentproject = document.querySelector('.currentproject').textContent
+                const button = e.target.closest('.task-content')
+                button.parentElement.removeChild(button)
+                userone.deleteTodo(currentproject,task)
+                console.log(`PROJECTS: removed ${task} from ${currentproject}`)
+                pubsub.publish('taskDeleted',list)
+                console.log(projects)
+            }
+        })
+
         const todoleft = document.createElement('div')
         todoleft.classList.add('left-panel')
         const tododelete = document.createElement('span')
@@ -1041,11 +1058,11 @@ const projects = (() => {
 
         todoright.appendChild(tododate)
 
-        nav.append(todoleft,todoright)
-        closeModal(modal)
+        todobutton.append(todoleft,todoright)
+
+        nav.appendChild(todobutton)
 
         const todomodal = document.getElementById('todomodal')
-        todomodal.remove('active')
 
     }
 
@@ -1077,6 +1094,14 @@ const projects = (() => {
             holdtodos.append(leftpanel,rightpanel)
         }
     }
+
+    // const holdtodos = document.querySelector('.hold-todos')
+    // holdtodos.addEventListener('click',(e) => { 
+    //     if(e.className == 'delete') {
+    //         const span = e.target.closest('span')
+    //         console.log(span)
+    //     }
+    // })
 
 
     const openTodoModalButtons = document.querySelectorAll('[data-todomodal-target]')
