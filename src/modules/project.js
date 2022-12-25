@@ -1,11 +1,11 @@
 import {v4 as uuidv4} from "uuid"
 import { Task } from "./task"
 
- export const Projects = (name, id = uuidv4()) => {
+ export const Projects = (name) => {
     let todos = []
     return {
         name:name,
-        id,
+        // id,
         todos,
         setProjectName(value) {
             name = value

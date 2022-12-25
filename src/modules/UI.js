@@ -5,7 +5,6 @@ import TodoController from "./TodoController";
 import { format } from "date-fns";
 import close from '../assets/close.svg'
 import differenceInCalendarISOWeeks from "date-fns/esm/fp/differenceInCalendarISOWeeks/index.js";
-
 //  const projectmodal = (() => {
 //     const openModalButtons = document.querySelectorAll('[data-modal-target]')
 //     const closeModalButtons = document.querySelectorAll('[data-close-button]')
@@ -765,14 +764,28 @@ const projects = (() => {
 
         let projectnamediv = document.querySelector('.projectname')
         let userprojects = document.querySelector('.user-projects')
+        const addTask = document.getElementById('add-task')
+        // addTask.style.display = 'none'
 
         projectnamediv.textContent = '';
         let df = document.createDocumentFragment()
         projects.forEach(name => {
-            let div = document.createElement('div')
-            div.classList.add('project-content')
             let button = document.createElement('button')
             button.classList.add('projectindex')
+
+            // button.addEventListener('click', (e) => {
+            //     if(e.target.className == 'projectindex') {
+            //         const currentproject = document.querySelector('.currentproject')
+            //         currentproject.textContent = `${name.name}`
+            //         const holdtodos = document.querySelector('.hold-todos')
+            //         addTask.style.display = 'block'
+            //         while(holdtodos.firstChild) {
+            //             holdtodos.removeChild(holdtodos.firstChild)
+            //         }
+            //         showCurrentTodos()
+            //     }
+
+            // })
 
             let buttonleftpanel = document.createElement('div')
             buttonleftpanel.classList.add('left-panel')
@@ -788,6 +801,37 @@ const projects = (() => {
             spanbutton.textContent = 'X'
             spanbutton.classList.add('close')
 
+            // spanbutton.addEventListener('click', (e) => {
+            //     if(e.target.className == 'name') {
+            //         console.log()
+            //     }
+                // const pbutton = document.querySelector('.name').textContent
+                // const button = e.target.closest(pbutton)
+                // console.log(pbutton)
+                // button.parentElement.removeChild(button)
+                // const currentproject = document.querySelector('.currentproject')
+                // currentproject.textContent = ''
+                // addTask.style.display = 'none'
+                // userone.deleteProject(name)
+                // pubsub.publish('projectDeleted',name)
+
+                // const holdtodos = document.querySelector('.hold-todos')
+                //      while(holdtodos.firstChild) {
+                //         holdtodos.removeChild(holdtodos.firstChild)
+                //      }
+                // parentNode.remove();
+                // let target = e.target;
+                // let itemIndex = 0;
+                // for(const item of list) {
+                //     if(item.index === target.parentNode.index) {
+                //         list.splice(item.index,1);
+                //         userone.deleteProject(item)
+                //         break;
+                //      }
+                //      itemIndex++
+                // }
+            // })
+
             buttonleftpanel.appendChild(spanbutton)
             buttonrightpanel.appendChild(pbutton)
 
@@ -795,31 +839,61 @@ const projects = (() => {
             // div.appendChild(button)
             df.appendChild(button)
 
-            userprojects.addEventListener('click', (e) => {
-                if(e.target.className == 'projectindex'){
+            button.addEventListener('click', (e) => {
+                if(e.target.className == 'projectindex') {
                     const currentproject = document.querySelector('.currentproject')
                     currentproject.textContent = `${name.name}`
-                    const addTask = document.getElementById('add-task')
+                    const holdtodos = document.querySelector('.hold-todos')
                     addTask.style.display = 'block'
+                    while(holdtodos.firstChild) {
+                        holdtodos.removeChild(holdtodos.firstChild)
+                    }
+                    // showCurrentTodos()
+                }
+                if(e.target.className == 'close') {
+                    const currentproject = document.querySelector('.currentproject')
+                    currentproject.textContent = `${name.name}`
+                    userone.deleteProject(name)
+                    // list = list.filter(nm => nm !== `${name.name}`)
+                    const button = e.target.closest('.projectindex')
+                    button.parentElement.removeChild(button)
                     const holdtodos = document.querySelector('.hold-todos')
                     while(holdtodos.firstChild) {
                         holdtodos.removeChild(holdtodos.firstChild)
                     }
-                    currentproject.textContent = `${name.name}`
+                    // addTask.style.display = 'none'
+                    console.log(`PROJECTS: projectDeleted the ${name.name}`)
+                    pubsub.publish('projectDeleletd', list)
+                    console.log(list)
                 }
-                 if(e.target.className == 'close'){
-                    const button = e.target.closest('.projectindex')
-                    button.parentElement.removeChild(button)
-                    userone.deleteProject(button)
-                    const currentproject = document.querySelector('.currentproject')
-                    currentproject.textContent = ''
-                    console.log(projectlist)
+
+            })
+
+            // userprojects.addEventListener('click', (e) => {
+            //     if(e.target.className == 'projectindex'){
+            //         const currentproject = document.querySelector('.currentproject')
+            //         currentproject.textContent = `${name.name}`
+            //         const addTask = document.getElementById('add-task')
+            //         addTask.style.display = 'block'
+            //         const holdtodos = document.querySelector('.hold-todos')
+            //         while(holdtodos.firstChild) {
+            //             holdtodos.removeChild(holdtodos.firstChild)
+            //         }
+            //         currentproject.textContent = `${name.name}`
+            //     }
+            //      if(e.target.className == 'close'){
+            //         const button = e.target.closest('.projectindex')
+            //         button.parentElement.removeChild(button)
+            //         userone.deleteProject(button)
+            //         const currentproject = document.querySelector('.currentproject')
+            //         currentproject.textContent = ''
+            //         console.log(projectlist)
         //             const pbutton = document.querySelector('.name')
         //             let name = pbutton.textContent
         //             projectindex.parentNode.remove()
                  
-            }
-        })
+        //     }
+        // })
 
 
             // projectnamediv.addEventListener('click', (e) => {
@@ -859,25 +933,19 @@ const projects = (() => {
         projectnamediv.appendChild(df)
 
     //     userprojects.addEventListener('click', (e) => {
-    //         if(e.target.className == 'projectindex'){
-    //             const pbutton = document.querySelector('.name').textContent
-    //             const currentproject = document.querySelector('.currentproject')
-    //             currentproject.textContent = target
-    //             const addTask = document.getElementById('add-task')
-    //             addTask.style.display = 'block'
-    //             const holdtodos = document.querySelector('.hold-todos')
-    //             while(holdtodos.firstChild) {
-    //                 holdtodos.removeChild(holdtodos.firstChild)
-    //             }
-    //             currentproject.textContent = target
-    //         }
-    //         else if(e.target.className == 'close'){
+    //         if(e.target.className == 'close'){
     //             const button = e.target.closest('.projectindex')
     //             button.parentElement.removeChild(button)
     //             userone.deleteProject(button)
     //             const currentproject = document.querySelector('.currentproject')
     //             currentproject.textContent = ''
     //             console.log(projectlist)
+    //             const addTask = document.getElementById('add-task')
+    //             addTask.style.display = 'none'
+    //             const holdtodo = document.querySelector('.hold-todos')
+    //             while(holdtodo.firstChild) {
+    //                 holdtodo.removeChild(holdtodo.firstChild)
+    //             }                
     //             const pbutton = document.querySelector('.name')
     //             let name = pbutton.textContent
     //             projectindex.parentNode.remove()
@@ -980,6 +1048,36 @@ const projects = (() => {
         todomodal.remove('active')
 
     }
+
+    function showCurrentTodos() {
+        const currentproject = document.querySelector('.currentproject').textContent
+        // userone.getProject(currentproject).todos
+
+        const holdtodos = document.querySelector('.hold-todos')
+        for(const objIndex of userone.getProject(currentproject).todos) {
+            const leftpanel = document.createElement('div')
+            leftpanel.classList.add('left-panel')
+
+            const tododelete = document.createElement('span')
+            tododelete.textContent = 'X'
+            tododelete.classList.add('delete')
+
+            const todoname = document.createElement('p')
+            todoname.classList.add('todo-name')
+            todoname.textContent = objIndex.task
+
+            const rightpanel = document.createElement('div')
+            const tododate = document.createElement('span')
+            tododate.classList.add('task-date')
+            tododate.textContent = objIndex.duedate
+
+            leftpanel.append(tododelete,todoname)
+            rightpanel.appendChild(tododate)
+
+            holdtodos.append(leftpanel,rightpanel)
+        }
+    }
+
 
     const openTodoModalButtons = document.querySelectorAll('[data-todomodal-target]')
     const closeModalButtons = document.querySelectorAll('[data-close-button]')
@@ -1084,41 +1182,3 @@ const projectForm = (() => {
 
 
 export {projectForm, projects}
-// export const projectmodal = (() => {
-//    const openProjectModal = document.querySelectorAll('[data-modal-target]')
-//    const closeProjectModal  = document.querySelectorAll('[data-close-button]')
-//    const overlay = document.getElementById('overlay')
-
-//    openProjectModal.forEach(button => {
-//     button.addEventListener('click', () => {
-//         const modal = document.querySelector('button.dataset.modalTarget')
-//         openModal(modal)
-//     })
-//    })
-
-//    overlay.addEventListener('click', () => {
-//     const modals = document.querySelectorAll('.project-modal.active')
-//     modals.forEach(modal => {
-//         closeModal(modal)
-//     })
-//    })
-
-//    closeProjectModal.forEach(button => {
-//     button.addEventListener('click', () => {
-//         const modal = button.closest('.modal')
-//         closeModal(modal)
-//     })
-//    })
-
-//    function openModal(modal) {
-//     if(modal == null) return 
-//     modal.classList.add('active')
-//     overlay.classList.add('active')
-//    }
-
-//    function closeModal(modal) {
-//     if(modal == null) return 
-//     modal.classList.remove('active')
-//     overlay.classList.remove('active')
-//    }
-// })()
