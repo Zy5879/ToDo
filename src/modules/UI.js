@@ -743,6 +743,10 @@ import differenceInCalendarISOWeeks from "date-fns/esm/fp/differenceInCalendarIS
 
 const projects = (() => {
     let list = [];
+    let userone = TodoController
+    let projects = userone.projects
+    list.push(userone)
+    // console.log(list)
     function renderTemp(container) {
         let template = document.getElementById('projectListTemplate')
         let div = template.content.cloneNode(true)
@@ -753,42 +757,161 @@ const projects = (() => {
     function addProject(name) {
         console.log(`I hear that ${name} is being added`)
         let projectlist = list
-        let userone = TodoController
-        let projects = userone.projects
         userone.addProject(name)
         console.log(projectlist)
         projectlist = Array.from(list).sort()
         console.log('projectUpdated')
         pubsub.publish('projectUpdated',name)
 
-        let projectnameul = document.querySelector('.projectname ul')
-        projectnameul.textContent = '';
+        let projectnamediv = document.querySelector('.projectname')
+        let userprojects = document.querySelector('.user-projects')
+
+        projectnamediv.textContent = '';
         let df = document.createDocumentFragment()
         projects.forEach(name => {
+            let div = document.createElement('div')
+            div.classList.add('project-content')
+            let button = document.createElement('button')
+            button.classList.add('projectindex')
+
+            let buttonleftpanel = document.createElement('div')
+            buttonleftpanel.classList.add('left-panel')
+
+            let buttonrightpanel = document.createElement('div')
+            buttonrightpanel.classList.add('right-panel')
+
+
+            let pbutton = document.createElement('p')
+            pbutton.textContent = `${name.name}`
+            pbutton.classList.add('name')
+            let spanbutton = document.createElement('span')
+            spanbutton.textContent = 'X'
+            spanbutton.classList.add('close')
+
+            buttonleftpanel.appendChild(spanbutton)
+            buttonrightpanel.appendChild(pbutton)
+
+            button.append(buttonleftpanel, buttonrightpanel)
+            // div.appendChild(button)
+            df.appendChild(button)
+
+            userprojects.addEventListener('click', (e) => {
+                if(e.target.className == 'projectindex'){
+                    const currentproject = document.querySelector('.currentproject')
+                    currentproject.textContent = `${name.name}`
+                    const addTask = document.getElementById('add-task')
+                    addTask.style.display = 'block'
+                    const holdtodos = document.querySelector('.hold-todos')
+                    while(holdtodos.firstChild) {
+                        holdtodos.removeChild(holdtodos.firstChild)
+                    }
+                    currentproject.textContent = `${name.name}`
+                }
+                 if(e.target.className == 'close'){
+                    const button = e.target.closest('.projectindex')
+                    button.parentElement.removeChild(button)
+                    userone.deleteProject(button)
+                    const currentproject = document.querySelector('.currentproject')
+                    currentproject.textContent = ''
+                    console.log(projectlist)
+        //             const pbutton = document.querySelector('.name')
+        //             let name = pbutton.textContent
+        //             projectindex.parentNode.remove()
+                 
+            }
+        })
+
+
+            // projectnamediv.addEventListener('click', (e) => {
+            //     if(e.target.className == 'projectindex') {
+            //         const currentproject = document.querySelector('.currentproject')
+            //         currentproject.textContent = `${name.name}`
+            //     }
+            //     if(e.target.className == 'close') {
+            //         const button = e.target.parentElement;
+            //     }
+            // })
+
+            // button.addEventListener('click', (e) => {
+            //     if(e.target.className == 'projectindex'){
+            //         const currentproject = document.querySelector('.currentproject')
+            //         currentproject.textContent = `${name.name}`
+            //     }
+            // })
+
             // const projectul = document.querySelector('.projectname ul')
             // projectul.addEventListener('click',(e) => {
             //     if(e.target.className == 'name') {
             //         console.log(`${name.name}`)
             //     }
             // })
-            let li = document.createElement('li')
-            let deletespan = document.createElement('span')
-            deletespan.textContent = 'X'
-            deletespan.classList.add('close')
-            let span = document.createElement('span')
-            span.classList.add('name')
-            span.textContent = `${name.name}`
-            li.append(deletespan,span)
-            df.appendChild(li)
+            // let li = document.createElement('li')
+            // li.textContent = `${name.name}`
+            // let deletespan = document.createElement('span')
+            // deletespan.textContent = 'X'
+            // deletespan.classList.add('close')
+            // let span = document.createElement('p')
+            // span.classList.add('name')
+            // span.textContent = `${name.name}`
+            // li.append(deletespan,span)
+            // df.appendChild(li)
         })
-        projectnameul.appendChild(df)
+        projectnamediv.appendChild(df)
 
-        const projectul = document.querySelector('.projectname ul')
-        projectul.addEventListener('click', (e) => {
-            let item = e.target.closest('p')
-            let name = item.textContent
-            console.log(item)
-        })
+    //     userprojects.addEventListener('click', (e) => {
+    //         if(e.target.className == 'projectindex'){
+    //             const pbutton = document.querySelector('.name').textContent
+    //             const currentproject = document.querySelector('.currentproject')
+    //             currentproject.textContent = target
+    //             const addTask = document.getElementById('add-task')
+    //             addTask.style.display = 'block'
+    //             const holdtodos = document.querySelector('.hold-todos')
+    //             while(holdtodos.firstChild) {
+    //                 holdtodos.removeChild(holdtodos.firstChild)
+    //             }
+    //             currentproject.textContent = target
+    //         }
+    //         else if(e.target.className == 'close'){
+    //             const button = e.target.closest('.projectindex')
+    //             button.parentElement.removeChild(button)
+    //             userone.deleteProject(button)
+    //             const currentproject = document.querySelector('.currentproject')
+    //             currentproject.textContent = ''
+    //             console.log(projectlist)
+    //             const pbutton = document.querySelector('.name')
+    //             let name = pbutton.textContent
+    //             projectindex.parentNode.remove()
+             
+    //     }
+    // })
+
+    //     userprojects.addEventListener('click', (e) => {
+    //         if(e.target.className == 'projectindex'){
+    //             const pbutton = document.querySelector('.name').textContent
+    //             const currentproject = document.querySelector('.currentproject')
+    //             currentproject.textContent = pbutton
+    //         }
+    //         else if(e.target.className == 'close'){
+    //             const button = e.target.closest('.projectindex')
+    //             button.parentElement.removeChild(button)
+    //             userone.deleteProject(button)
+    //             console.log(projectlist)
+    //             const pbutton = document.querySelector('.name')
+    //             let name = pbutton.textContent
+    //             projectindex.parentNode.remove()
+             
+    //     }
+    // })
+        // console.log(projectlist)
+
+        // const projectul = document.querySelector('.projectname ul')
+        // projectul.addEventListener('click', (e) => {
+        //     let item = e.target.closest('p')
+        //     let name = item.textContent
+
+        //     const currentproject = document.querySelector('.currentproject')
+        //     currentproject.textContent = `${name}`
+        // })
         // projectnameul.addEventListener('click', (e) => {
         //     if(e.target.className == 'name') {
         //         const currentproject = document.querySelector('.currentproject')
@@ -808,6 +931,95 @@ const projects = (() => {
             // }
         // })  
     }
+
+
+
+    const taskbtn = document.getElementById('taskbtn')
+    taskbtn.addEventListener('click',displayTodo)
+
+    function displayTodo(e) {
+        e.preventDefault()
+        const currentproject = document.querySelector('.currentproject').textContent
+        let input = document.getElementById('inputTask')
+        let task = input.value
+        input.value = '';
+
+        let inputdate = document.getElementById('inputDate')
+        let date = inputdate.value;
+        inputdate.value = ''
+
+        userone.addTodo(currentproject,task,date)
+        const nav = document.querySelector('.hold-todos')
+
+        const todobutton = document.createElement('button')
+        todobutton.classList.add('task-content')
+
+        const todoleft = document.createElement('div')
+        todoleft.classList.add('left-panel')
+        const tododelete = document.createElement('span')
+        tododelete.textContent = 'X'
+        tododelete.classList.add('delete')
+        const todoname = document.createElement('p')
+        todoname.classList.add('todo-name')
+        todoname.textContent = task
+        
+        todoleft.append(tododelete,todoname)
+
+        const todoright = document.createElement('div')
+        todoright.classList.add('right-panel')
+        const tododate = document.createElement('span')
+        tododate.classList.add('task-date')
+        tododate.textContent = date
+
+        todoright.appendChild(tododate)
+
+        nav.append(todoleft,todoright)
+        closeModal(modal)
+
+        const todomodal = document.getElementById('todomodal')
+        todomodal.remove('active')
+
+    }
+
+    const openTodoModalButtons = document.querySelectorAll('[data-todomodal-target]')
+    const closeModalButtons = document.querySelectorAll('[data-close-button]')
+    const overlay = document.getElementById('overlay')
+
+    openTodoModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = document.querySelector(button.dataset.todomodalTarget)
+            openModal(modal)
+        })
+    })
+
+    overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.todomodal.active')
+        modals.forEach(modal => {
+            closeModal(modal)
+        })
+    })
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modals = document.querySelectorAll('.todomodal')
+            modals.forEach(modal => {
+                closeModal(modal)
+            })
+        })
+    })
+
+    function openModal(todomodal) {
+        if(todomodal == null) return
+        todomodal.classList.add('active')
+        overlay.classList.add('active')
+    }
+    
+    function closeModal(todomodal) {
+        if(todomodal == null) return 
+        todomodal.classList.remove('active')
+        overlay.classList.remove('active')
+    }
+
 
     return {
         renderTemp

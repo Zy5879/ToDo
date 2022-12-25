@@ -69,6 +69,8 @@
 .project-content button {
     display: flex;
     align-items: center;    
+    justify-content: space-between;
+    width: 50%;
 }
 
 /* .project-content {

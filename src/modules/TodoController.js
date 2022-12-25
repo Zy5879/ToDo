@@ -71,11 +71,10 @@ import { Task } from "./task";
 
 export default TodoController
 
-let user1 = TodoController
-user1.addProject('Name')
-user1.addTodo('Name','task','1/22/2022')
-user1.deleteProject('Name')
-console.log(user1)
+// let user1 = TodoController
+// user1.addProject('Name')
+// user1.addProject('Current')
+// console.log(user1)
 
 // let user1 = TodoController().addProject('Name')
 // user1.addTodo('Name','task','11/22/2022')
