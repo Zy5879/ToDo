@@ -1063,6 +1063,7 @@ const projects = (() => {
         nav.appendChild(todobutton)
 
         const todomodal = document.getElementById('todomodal')
+        closeModal(todomodal)
 
     }
 
