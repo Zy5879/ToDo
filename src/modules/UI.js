@@ -4,7 +4,6 @@ import { Task } from "./task";
 import TodoController from "./TodoController";
 import { format } from "date-fns";
 import close from '../assets/close.svg'
-import differenceInCalendarISOWeeks from "date-fns/esm/fp/differenceInCalendarISOWeeks/index.js";
 //  const projectmodal = (() => {
 //     const openModalButtons = document.querySelectorAll('[data-modal-target]')
 //     const closeModalButtons = document.querySelectorAll('[data-close-button]')
