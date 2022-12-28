@@ -15,7 +15,3 @@ export const Task = (task,duedate, id = uuidv4()) => {
 
     }
 }
-
-
-let user1 = Task('task','date')
-console.log(user1)

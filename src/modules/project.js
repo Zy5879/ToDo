@@ -40,8 +40,3 @@ import { Task } from "./task"
         }
     }
 }
-
-let user1 = Projects('New Project')
-user1.addTask('Create','11/22/2022')
-// user1.editTodo('crate','1/2/2022')
-console.log(user1)

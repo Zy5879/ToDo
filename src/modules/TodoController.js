@@ -70,17 +70,3 @@ import { Task } from "./task";
 })()
 
 export default TodoController
-
-// let user1 = TodoController
-// user1.addProject('Name')
-// user1.addProject('Current')
-// console.log(user1)
-
-// let user1 = TodoController().addProject('Name')
-// user1.addTodo('Name','task','11/22/2022')
-
-// user1.editProjectTodo('Name','netask','1/2/2022')
-
-
-
-// console.log(user1)

@@ -743,7 +743,21 @@ const projects = (() => {
     let list = [];
     let userone = TodoController
     let projects = userone.projects
+    // const list = localStorage.getItem('myObject', JSON.stringify(projects)) ? JSON.parse(localStorage.getItem('myObject')) : [];
     list.push(userone)
+    // console.log(projects.todos)
+
+    console.log(list)
+
+    console.log(userone)
+
+    // window.addEventListener('load', () => {
+    //     localStorage.setItem('myObject', JSON.stringify(projects))
+    //     let retrivedobject = localStorage.getItem('myObject')
+
+    //     console.log('retrievedobject:', JSON.parse(retrivedobject))
+    // })
+
     // console.log(list)
     function renderTemp(container) {
         let template = document.getElementById('projectListTemplate')
@@ -936,6 +950,10 @@ const projects = (() => {
         })
         projectnamediv.appendChild(df)
 
+
+            // const taskbtn = document.getElementById('taskbtn')
+            // taskbtn.addEventListener('click',displayTodo)
+
     //     userprojects.addEventListener('click', (e) => {
     //         if(e.target.className == 'close'){
     //             const button = e.target.closest('.projectindex')
@@ -1010,6 +1028,7 @@ const projects = (() => {
     taskbtn.addEventListener('click',displayTodo)
 
     function displayTodo(e) {
+
         e.preventDefault()
         const currentproject = document.querySelector('.currentproject').textContent
         let input = document.getElementById('inputTask')
@@ -1063,6 +1082,7 @@ const projects = (() => {
 
         const todomodal = document.getElementById('todomodal')
         closeModal(todomodal)
+        // console.log(projects)
 
     }
 
