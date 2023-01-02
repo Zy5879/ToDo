@@ -2,6 +2,7 @@ import pubsub from "./modules/pubsub";
 import { Task } from "./modules/task";
 import { Projects } from "./modules/project";
 import TodoController from "./modules/TodoController";
+// import { projects } from "./modules/storage";
 import {projectForm, projects } from "./modules/UI";
 import styles from './style/styles.css'
 
@@ -10,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     projects.renderTemp(div)
 })
-// document.addEventListener('DOMContentLoaded', () => {
+// // document.addEventListener('DOMContentLoaded', () => {
 //     let nav = document.querySelector('.hold-projects');
 
 //     projects.renderTemp(nav)

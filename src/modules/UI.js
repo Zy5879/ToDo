@@ -740,16 +740,20 @@ import close from '../assets/close.svg'
 // })()
 
 const projects = (() => {
-    let list = [];
+    // let list = []
+    // let list = JSON.parse(localStorage.getItem('projects'));
     let userone = TodoController
     let projects = userone.projects
     // const list = localStorage.getItem('myObject', JSON.stringify(projects)) ? JSON.parse(localStorage.getItem('myObject')) : [];
-    list.push(userone)
+    // list.push(userone)
     // console.log(projects.todos)
-
-    console.log(list)
+    // console.log(list)
 
     console.log(userone)
+
+    window.onload = function() {
+        showCurrentProjects()
+    }
 
     // window.addEventListener('load', () => {
     //     localStorage.setItem('myObject', JSON.stringify(projects))
@@ -768,13 +772,14 @@ const projects = (() => {
     }
     function addProject(name) {
         console.log(`I hear that ${name} is being added`)
-        let projectlist = list
+        // let projectlist = list
         userone.addProject(name)
-        console.log(projectlist)
-        projectlist = Array.from(list).sort()
+        // console.log(projectlist)
+        // projectlist = Array.from(list).sort()
         console.log('projectUpdated')
         pubsub.publish('projectUpdated',name)
 
+        // localStorage.setItem('projects', JSON.stringify(list))
         let projectnamediv = document.querySelector('.projectname')
         let userprojects = document.querySelector('.user-projects')
         const addTask = document.getElementById('add-task')
@@ -865,7 +870,7 @@ const projects = (() => {
                     while(holdtodos.firstChild) {
                         holdtodos.removeChild(holdtodos.firstChild)
                     }
-                    // showCurrentTodos()
+                    showCurrentTodos()
                 }
                 if(e.target.className == 'close') {
                     const currentproject = document.querySelector('.currentproject').textContent
@@ -1115,6 +1120,29 @@ const projects = (() => {
         }
     }
 
+    function showCurrentProjects() {
+        let items = '';
+        projects.forEach(project => {
+
+            // items += `<button class='projectindex'>
+            //             <div class='left-panel'> 
+            //             <span class = 'close'>X</span>
+            //             </div>
+            //             <div class='right-panel'>
+            //             <p class='name'>${project.name}</p>
+            //             </div>
+            //             </button>`
+                
+        })
+
+        // const projectname = document.querySelector('.projectname')
+        // projectname.innerHTML = items
+    }
+
+    // window.onload = function() {
+    //     showCurrentProjects()
+    // }
+
     // const holdtodos = document.querySelector('.hold-todos')
     // holdtodos.addEventListener('click',(e) => { 
     //     if(e.className == 'delete') {
@@ -1165,7 +1193,8 @@ const projects = (() => {
 
 
     return {
-        renderTemp
+        renderTemp,
+        showCurrentProjects
     }
 })()
 

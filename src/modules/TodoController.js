@@ -27,11 +27,13 @@ import { Task } from "./task";
 // }
 
  const TodoController = (() => {
-    let projects = []
+    let projects = JSON.parse(localStorage.getItem('myprojects')) || [];
     const addProject = (projectname) => {
         if(projects.find((project) => project.name === projectname.name))
         return
-        projects.push(Projects(projectname))
+        projects.push(Projects(projectname)) 
+        localStorage.setItem('myprojects', JSON.stringify(projects))
+
 
     }
     const deleteProject = (projectname) => {
@@ -39,17 +41,22 @@ import { Task } from "./task";
         return projects.splice(projects.indexOf(grabProject),1)
     }
     const getProject = (projectname) => {
-       return projects.find((project) => project.getProjectName() === projectname)
+       return projects.find((project) => project.name === projectname)
     }
     const addTodo = (projectname,task,date) => {
+        // localStorage.setItem('myprojects', JSON.stringify(task,date) )
         // const grabProject = getProject(projectname).todos
         // return getProject(projectname).addTask((task,date))
-         return getProject(projectname).todos.push(Task(task,date))
+          getProject(projectname).todos.push(Task(task,date))
+          localStorage.setItem('myprojects', JSON.stringify(projects))
+        //   getProject(projectname).todos.push(Task(task,date))
+        //   localStorage.setItem('myprojects',todos)
     //  const grabProject = projects.find((project) => project.getProjectName() === projectname)
     //  return grabProject.addTask(Task(task,date))
     }
     const deleteTodo = (projectname, task) => {
-        return getProject(projectname).deleteTask(task)
+         getProject(projectname).deleteTask(task)
+         localStorage.setItem('myprojects',JSON.stringify(projects))
     }
 
     const editProjectTodo = (projectname,task,date) => {
@@ -69,4 +76,4 @@ import { Task } from "./task";
     }
 })()
 
-export default TodoController
+export default TodoController 
